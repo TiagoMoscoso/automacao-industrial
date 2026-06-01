@@ -473,3 +473,386 @@
   color: var(--cor-texto);
   font-weight: 600;
 }
+
+/* Seção explicativa da arquitetura de automação */
+.secao-arquitetura__container {
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  color: var(--cor-texto);
+  display: grid;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 14px;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+}
+
+.secao-arquitetura__cabecalho {
+  display: grid;
+  gap: 8px;
+}
+
+.secao-arquitetura__subtitulo {
+  color: var(--cor-texto-secundario);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.secao-arquitetura__titulo {
+  border-left: 3px solid var(--cor-comando);
+  font-size: 1.1rem;
+  line-height: 1.2;
+  margin: 0;
+  padding-left: 0.6rem;
+}
+
+.secao-arquitetura__definicao {
+  color: var(--cor-texto-secundario);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 78rem;
+}
+
+.secao-arquitetura__detalhe {
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.secao-arquitetura__detalhe > summary {
+  color: var(--cor-texto);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  list-style: none;
+  user-select: none;
+}
+
+.secao-arquitetura__detalhe > summary::after {
+  content: ' ▾';
+  color: var(--cor-alerta);
+}
+
+.secao-arquitetura__detalhe > summary::-webkit-details-marker {
+  display: none;
+}
+
+.secao-arquitetura__niveis {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 12px;
+}
+
+.secao-arquitetura__nivel {
+  background: rgba(17, 24, 32, 0.38);
+  border: 1px solid rgba(242, 246, 250, 0.12);
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.secao-arquitetura__nivel h3,
+.secao-arquitetura__equivalencia h3 {
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+}
+
+.secao-arquitetura__nivel p {
+  color: var(--cor-texto-secundario);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.secao-arquitetura__equivalencia {
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.secao-arquitetura__tabela-wrapper {
+  overflow-x: auto;
+}
+
+.secao-arquitetura__tabela {
+  border-collapse: collapse;
+  min-width: 620px;
+  width: 100%;
+}
+
+.secao-arquitetura__tabela th,
+.secao-arquitetura__tabela td {
+  border-bottom: 1px solid var(--cor-borda);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.secao-arquitetura__tabela th {
+  color: var(--cor-texto);
+  font-weight: 700;
+}
+
+.secao-arquitetura__tabela td {
+  color: var(--cor-texto-secundario);
+}
+
+.secao-arquitetura__container .arquitetura__container {
+  max-width: none;
+  width: 100%;
+}
+
+/* Arquitetura de automação */
+.arquitetura__container {
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  color: var(--cor-texto);
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 980px;
+  padding: 16px;
+}
+
+.arquitetura__cabecalho {
+  margin-bottom: 12px;
+}
+
+.arquitetura__subtitulo {
+  color: var(--cor-texto-secundario);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.arquitetura__titulo {
+  font-size: 1.15rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.arquitetura__camada {
+  border: 1px solid var(--cor-borda);
+  border-left-width: 6px;
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.arquitetura__camada--supervisao {
+  background: #18304a;
+  border-left-color: var(--cor-comando);
+}
+
+.arquitetura__camada--controle {
+  background: #173826;
+  border-left-color: var(--cor-normal);
+}
+
+.arquitetura__camada--campo {
+  background: #3b321b;
+  border-left-color: var(--cor-alerta);
+}
+
+.arquitetura__camada-label {
+  color: var(--cor-texto);
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.arquitetura__lista,
+.arquitetura__rede-lista,
+.arquitetura__equivalencias {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.arquitetura__lista {
+  display: grid;
+  gap: 8px;
+}
+
+.arquitetura__lista--grade {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.arquitetura__lista--compacta {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.arquitetura__item {
+  background: rgba(17, 24, 32, 0.38);
+  border: 1px solid rgba(242, 246, 250, 0.12);
+  border-radius: 6px;
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 9px 10px;
+}
+
+.arquitetura__item strong {
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.arquitetura__item span,
+.arquitetura__item em {
+  color: var(--cor-texto-secundario);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.arquitetura__item em {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.arquitetura__conector {
+  align-items: center;
+  color: var(--cor-texto-secundario);
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 44px minmax(0, 1fr);
+  padding: 10px 0;
+}
+
+.arquitetura__seta {
+  align-items: center;
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 4px;
+  color: var(--cor-alerta);
+  display: inline-flex;
+  font-size: 1.35rem;
+  font-weight: 800;
+  height: 44px;
+  justify-content: center;
+  width: 44px;
+}
+
+.arquitetura__rede {
+  background: var(--cor-painel-claro);
+  border: 1px dashed var(--cor-borda);
+  border-radius: 6px;
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+}
+
+.arquitetura__rede strong {
+  color: var(--cor-texto);
+  font-size: 0.82rem;
+}
+
+.arquitetura__rede span,
+.arquitetura__rede li {
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.arquitetura__rede-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.arquitetura__grupos-campo {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.arquitetura__grupo-campo {
+  min-width: 0;
+}
+
+.arquitetura__grupo-campo h4 {
+  color: var(--cor-texto);
+  font-size: 0.82rem;
+  margin: 0 0 8px;
+}
+
+.arquitetura__lista--tags {
+  grid-template-columns: 1fr;
+}
+
+.arquitetura__badge-simulado {
+  background: rgba(17, 24, 32, 0.42);
+  border: 1px solid rgba(242, 246, 250, 0.14);
+  border-radius: 4px;
+  color: var(--cor-texto-secundario);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  margin: 10px 0 0;
+  padding: 7px 9px;
+}
+
+.arquitetura__badge-simulado strong {
+  color: var(--cor-texto);
+}
+
+.arquitetura__legenda {
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  margin-top: 12px;
+  padding: 12px;
+}
+
+.arquitetura__legenda h3 {
+  font-size: 0.95rem;
+  margin: 0 0 10px;
+}
+
+.arquitetura__equivalencias {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.arquitetura__equivalencia {
+  border-left: 3px solid var(--cor-comando);
+  display: grid;
+  gap: 3px;
+  padding-left: 8px;
+}
+
+.arquitetura__equivalencia span {
+  color: var(--cor-texto-secundario);
+  font-size: 0.72rem;
+}
+
+.arquitetura__equivalencia strong {
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 767px) {
+  .arquitetura__container {
+    padding: 12px;
+  }
+
+  .arquitetura__conector {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .arquitetura__rede {
+    width: 100%;
+  }
+}

@@ -30,6 +30,14 @@ Task 05 complete. Backend FastAPI is available through `criar_aplicacao()` and
 - Python 3.14.4 is newer than `requires-python = ">=3.11"`. If any dependency has an upper bound on Python version, install may fail. Monitor when adding new dependencies.
 
 ## Handoffs
+- Task 39 complete em 2026-06-01. O `README.md` agora inclui a seção
+  "Arquitetura de Automação" para apoiar a task 40, com diagrama Mermaid,
+  equipamentos por camada, comunicação, 6 equivalências real x simulado e
+  diferenciação entre P&ID, sinóptico e arquitetura.
+- Task 37 complete em 2026-06-01. `ArquiteturaAutomacao.tsx` existe como
+  componente independente e usa `frontend/src/dados/arquiteturaAutomacao.ts`.
+  A task 38 deve apenas integrar o componente na interface, sem recriar dados
+  ou estilos de arquitetura.
 - Task 21 complete em 2026-05-31. `auditoria-sinotico.md` foi reescrita como
   auditoria completa do estado atual do sinóptico, com geometria, tabela dos 14
   equipamentos, três linhas lógicas, 11 problemas classificados por causa,

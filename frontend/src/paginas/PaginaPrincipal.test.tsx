@@ -110,6 +110,18 @@ describe('PaginaPrincipal', () => {
     expect(screen.getByText('Ajuste manual de variáveis')).toBeInTheDocument()
   })
 
+  it('exibe seção de arquitetura na aba de documentação técnica', () => {
+    render(<PaginaPrincipal />)
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Documentação Técnica' }))
+
+    expect(
+      screen.getAllByRole('heading', { name: 'Arquitetura de Automação' }),
+    ).toHaveLength(2)
+    expect(screen.getByText('Sistema industrial real')).toBeVisible()
+    expect(screen.getByText('Sistema web simulado')).toBeVisible()
+  })
+
   it('cabeçalho contém o nome da planta e o indicador de status do processo', () => {
     render(<PaginaPrincipal />)
     const cabecalho = screen.getByRole('banner')

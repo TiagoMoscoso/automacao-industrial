@@ -17,6 +17,103 @@ operação seria feita por IHM/SCADA. Neste projeto acadêmico, o backend Python
 representa conceitualmente o CLP e a dinâmica simulada da planta, enquanto o
 frontend React representa uma tela supervisória didática.
 
+## Arquitetura de Automação
+
+Esta seção atende explicitamente ao requisito acadêmico #4: elaborar uma
+arquitetura de automação com especificação mínima dos equipamentos necessários.
+A arquitetura de automação da planta é composta por instrumentos de campo
+responsáveis pela medição das variáveis do processo, atuadores responsáveis
+pela intervenção física na planta, um CLP central responsável pela lógica de
+controle e intertravamento, uma rede industrial de comunicação e um sistema
+supervisório para operação, alarmes e monitoramento em tempo real.
+
+```mermaid
+graph TD
+  subgraph SUPERVISAO["Nível de Supervisão"]
+    IHM["IHM Local"]
+    SCADA["Estação SCADA"]
+    ENG["Estação de Engenharia"]
+    HIST["Historiador de dados"]
+    SAL["Servidor de alarmes"]
+    PAL["Painel de alarmes"]
+  end
+
+  subgraph REDE_SUP["Rede Industrial"]
+    SW["Switch Industrial Ethernet"]
+    PROT["Modbus TCP / EtherNet/IP / Profinet"]
+  end
+
+  subgraph CONTROLE["Nível de Controle"]
+    CLP["CLP Principal"]
+    AI["Módulos de Entrada Analógica"]
+    AO["Módulos de Saída Analógica"]
+    DI["Módulos de Entrada Digital"]
+    DO["Módulos de Saída Digital"]
+    PAINEL["Painel elétrico, fonte 24 Vcc, relés, bornes e UPS"]
+  end
+
+  subgraph REDE_CAMPO["Sinais de Campo"]
+    ANALOGICO["4-20 mA / HART"]
+    DIGITAL["Digital 24 Vcc"]
+    SERIAL["RS-485 / Modbus RTU"]
+  end
+
+  subgraph CAMPO["Nível de Campo"]
+    INST["FIT-101, FIT-102, FIT-201, LIT-101, PIT-101, DPIT-101, TIT-101, AIT-101, AIT-102, AIT-103"]
+    ATUADORES["FV-101, XV-101, P-101, P-102, P-201, VFD-101"]
+  end
+
+  SUPERVISAO --> REDE_SUP --> CONTROLE --> REDE_CAMPO --> CAMPO
+```
+
+### Equipamentos por camada
+
+| Camada | Equipamentos mínimos |
+|---|---|
+| Campo | Transmissores e analisadores `FIT-101`, `FIT-102`, `LIT-101`, `PIT-101`, `DPIT-101`, `TIT-101`, `AIT-101`, `AIT-102`, `AIT-103` e `FIT-201`; atuadores `FV-101`, `XV-101`, `P-101`, `P-102`, `P-201` e `VFD-101`. |
+| Controle | `CLP Principal`, módulos `AI`, `AO`, `DI` e `DO`, fonte de alimentação 24 Vcc, relés de interface, disjuntores e seccionadoras, bornes de passagem, painel elétrico de controle e nobreak/UPS. |
+| Supervisão | `IHM Local`, `Estação SCADA`, `Estação de Engenharia`, `Historiador de dados`, `Servidor de alarmes` e `Painel de alarmes`. |
+| Rede | `Switch Industrial Ethernet`, comunicação CLP e SCADA por `Modbus TCP`, `EtherNet/IP` ou `Profinet`, sinais de instrumentação `4-20 mA / HART`, sinais discretos `24 Vcc` e comunicação com inversor por `RS-485 / Modbus RTU`. |
+
+### Comunicação entre camadas
+
+No nível de campo, os transmissores enviam medições analógicas de vazão, nível,
+pressão, temperatura e qualidade da água para os módulos de entrada do CLP por
+sinais `4-20 mA / HART`. Os atuadores recebem comandos do CLP por saídas
+analógicas, sinais digitais `24 Vcc` ou comunicação serial com o inversor
+`VFD-101`. No nível de controle, o CLP executa a lógica de intertravamento e a
+Matriz de Causa e Efeito, comandando bombas, válvulas e alarmes. No nível de
+supervisão, IHM, SCADA, historiador e painel de alarmes trocam dados com o CLP
+pela rede industrial, permitindo operação, monitoramento, registro histórico e
+tratamento de eventos.
+
+No sistema web simulado, essa separação é mantida de forma didática. O backend
+Python representa o estado de processo, a lógica de controle e a Matriz de
+Causa e Efeito que existiriam no CLP. O frontend React representa a IHM/SCADA,
+com sinóptico, cards de variáveis, atuadores e alarmes. A API HTTP entre
+frontend e backend representa, para fins acadêmicos, a troca de dados que em
+uma planta real ocorreria por uma rede industrial.
+
+### Equivalência entre sistema real e sistema simulado
+
+| Sistema real | Sistema simulado |
+|---|---|
+| Instrumentos de campo | Estado de processo calculado pelo backend Python |
+| CLP | Controlador em Python no backend |
+| Matriz de intertravamento | Matriz de Causa e Efeito implementada em Python |
+| Bombas e válvulas | Ações de controle aplicadas ao modelo da planta |
+| IHM local / Sistema SCADA | Frontend React com sinóptico, cards e alarmes |
+| Rede industrial | Comunicação HTTP entre frontend e backend via API REST |
+
+### Diferença entre P&ID, sinóptico e arquitetura
+
+**P&ID** (Piping and Instrumentation Diagram): representa o fluxo do processo,
+a tubulação e a instrumentação com suas conexões físicas. **Sinóptico**:
+representação gráfica simplificada do estado operacional em tempo real, usado
+pelo operador. **Arquitetura de automação**: define a hierarquia de
+equipamentos de controle, supervisão e comunicação que suportam a operação
+automatizada da planta.
+
 ## Como executar localmente com `.venv`
 
 Use a `.venv` existente na raiz do projeto. Não é necessário criar outro

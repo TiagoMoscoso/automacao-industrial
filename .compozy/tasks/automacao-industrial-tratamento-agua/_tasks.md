@@ -39,3 +39,8 @@
 | 33 | Criar utilitários de status operacional para variáveis de processo | completed | low | task_32 |
 | 34 | Refatorar cards de ajuste com status badge, faixa operacional e painel expansível | pending | high | task_33 |
 | 35 | Adicionar seção explicativa e guia de nomenclatura de tags industriais | pending | low | task_34 |
+| 36 | Criar modelo conceitual da arquitetura de automação | completed | medium | task_27 |
+| 37 | Criar componente visual "Arquitetura de Automação" | completed | medium | task_36 |
+| 38 | Adicionar seção explicativa da arquitetura de automação na interface | completed | low | task_37 |
+| 39 | Atualizar documentação técnica com arquitetura de automação | completed | low | task_36 |
+| 40 | Revisar roteiro de apresentação de 15 minutos com foco nos requisitos acadêmicos | completed | low | task_38, task_39 |

@@ -1,6 +1,6 @@
 // P&ID Conceitual — simbologia inspirada na norma ISA 5.1
 // Fluxo da esquerda para a direita: TK-101 → FV-101 → FIT-101 → P-101/P-102 → F-101 → TK-102
-// Instrumentos representados por círculos; válvulas por borboleta (▷◁); bombas por círculo+triângulo
+// viewBox 1200×600: linha principal em y=240, instrumentos em y=110, descarte em y=395, dosagem em y=495
 
 export function PidConceitual() {
   return (
@@ -13,7 +13,7 @@ export function PidConceitual() {
 
       <div className="pid-container">
         <svg
-          viewBox="0 0 1000 480"
+          viewBox="0 0 1200 600"
           xmlns="http://www.w3.org/2000/svg"
           className="pid-svg"
           role="img"
@@ -26,229 +26,230 @@ export function PidConceitual() {
             <marker id="seta-sinal" markerWidth="6" markerHeight="6" refX="5" refY="2.5" orient="auto">
               <path d="M0,0 L0,5 L6,2.5 z" fill="#5a7a9a" />
             </marker>
+            <marker id="seta-descarte" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#5a7a9a" />
+            </marker>
           </defs>
 
           {/* ── Fundo ── */}
-          <rect width="1000" height="480" fill="#111820" rx="8" />
+          <rect width="1200" height="600" fill="#111820" rx="8" />
 
           {/* ══════════════════════════════════════════
-              LINHA PRINCIPAL DE PROCESSO (y = 200)
+              LINHA PRINCIPAL DE PROCESSO (y = 240)
           ══════════════════════════════════════════ */}
 
-          {/* Trecho: TK-101 → FV-101 */}
-          <line x1="130" y1="200" x2="220" y2="200" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
-          {/* Trecho: FV-101 → FIT-101 */}
-          <line x1="250" y1="200" x2="320" y2="200" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
-          {/* Trecho: FIT-101 → P-101 */}
-          <line x1="360" y1="200" x2="430" y2="200" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
-          {/* Trecho: P-101 → F-101 */}
-          <line x1="480" y1="200" x2="570" y2="200" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
-          {/* Trecho: F-101 → TK-102 */}
-          <line x1="630" y1="200" x2="750" y2="200" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
+          {/* TK-101 → FV-101 */}
+          <line x1="125" y1="240" x2="192" y2="240" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
+          {/* FV-101 → FIT-101 */}
+          <line x1="222" y1="240" x2="267" y2="240" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
+          {/* FIT-101 → P-101 */}
+          <line x1="308" y1="240" x2="382" y2="240" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
+          {/* P-101 → F-101 */}
+          <line x1="440" y1="240" x2="528" y2="240" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
+          {/* F-101 → TK-102 */}
+          <line x1="594" y1="240" x2="745" y2="240" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
+          {/* TK-102 → FIT-102 */}
+          <line x1="840" y1="240" x2="902" y2="240" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
+          {/* FIT-102 → Processo */}
+          <line x1="942" y1="240" x2="1120" y2="240" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
 
           {/* ── TK-101 Tanque de Entrada ── */}
-          <g transform="translate(40, 155)">
-            <rect x="0" y="0" width="90" height="90" rx="4" fill="#182431" stroke="#3a6a9a" strokeWidth="2" />
-            <path d="M0,10 Q45,-10 90,10" fill="none" stroke="#3a6a9a" strokeWidth="2" />
-            <line x1="0" y1="10" x2="0" y2="0" stroke="#3a6a9a" strokeWidth="2" />
-            <line x1="90" y1="10" x2="90" y2="0" stroke="#3a6a9a" strokeWidth="2" />
-            <text x="45" y="52" textAnchor="middle" fill="#8aabca" fontSize="11" fontWeight="bold">TK-101</text>
-            <text x="45" y="68" textAnchor="middle" fill="#6a8aaa" fontSize="9">Tanque</text>
-            <text x="45" y="80" textAnchor="middle" fill="#6a8aaa" fontSize="9">Entrada</text>
+          <g transform="translate(30, 195)">
+            <rect x="0" y="0" width="95" height="95" rx="4" fill="#182431" stroke="#3a6a9a" strokeWidth="2" />
+            <path d="M0,12 Q47,-12 95,12" fill="none" stroke="#3a6a9a" strokeWidth="2" />
+            <line x1="0" y1="12" x2="0" y2="0" stroke="#3a6a9a" strokeWidth="2" />
+            <line x1="95" y1="12" x2="95" y2="0" stroke="#3a6a9a" strokeWidth="2" />
+            <text x="47" y="53" textAnchor="middle" fill="#8aabca" fontSize="13" fontWeight="bold">TK-101</text>
+            <text x="47" y="70" textAnchor="middle" fill="#6a8aaa" fontSize="11">Tanque de Entrada</text>
           </g>
 
-          {/* ── FV-101 Válvula de Controle ── */}
-          <g transform="translate(220, 188)">
-            {/* borboleta: dois triângulos opostos */}
+          {/* ── FV-101 Válvula de Controle de Vazão ── */}
+          <g transform="translate(192, 228)">
             <polygon points="0,12 16,0 16,24" fill="#2a4a6a" stroke="#5a9acf" strokeWidth="1.5" />
             <polygon points="30,12 14,0 14,24" fill="#2a4a6a" stroke="#5a9acf" strokeWidth="1.5" />
-            <line x1="15" y1="0" x2="15" y2="-14" stroke="#5a9acf" strokeWidth="1.5" />
-            <circle cx="15" cy="-20" r="8" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="15" y="-16" textAnchor="middle" fill="#8aabca" fontSize="7">FC</text>
-            <text x="15" y="36" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">FV-101</text>
+            <line x1="15" y1="0" x2="15" y2="-16" stroke="#5a9acf" strokeWidth="1.5" />
+            <circle cx="15" cy="-24" r="10" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="15" y="-20" textAnchor="middle" fill="#8aabca" fontSize="9" fontWeight="bold">FC</text>
+            <text x="15" y="38" textAnchor="middle" fill="#8aabca" fontSize="11" fontWeight="bold">FV-101</text>
           </g>
 
-          {/* ── FIT-101 Transmissor de Vazão ── */}
-          <g transform="translate(320, 180)">
-            <circle cx="20" cy="20" r="18" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="20" y="17" textAnchor="middle" fill="#8aabca" fontSize="7" fontWeight="bold">FIT</text>
-            <text x="20" y="27" textAnchor="middle" fill="#8aabca" fontSize="7">101</text>
-            <text x="20" y="50" textAnchor="middle" fill="#6a8aaa" fontSize="9">m³/h</text>
+          {/* ── FIT-101 Transmissor de Vazão de Entrada ── */}
+          <g transform="translate(267, 220)">
+            <circle cx="20" cy="20" r="20" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="20" y="17" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">FIT</text>
+            <text x="20" y="28" textAnchor="middle" fill="#8aabca" fontSize="10">101</text>
+            <text x="20" y="52" textAnchor="middle" fill="#6a8aaa" fontSize="10">m³/h</text>
           </g>
 
           {/* ── P-101 Bomba Principal ── */}
-          <g transform="translate(430, 175)">
-            <circle cx="25" cy="25" r="23" fill="#182431" stroke="#25a45a" strokeWidth="2" />
-            <polygon points="14,10 14,40 38,25" fill="#25a45a" opacity="0.7" />
-            <text x="25" y="58" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">P-101</text>
-            <text x="25" y="70" textAnchor="middle" fill="#6a8aaa" fontSize="8">Bomba</text>
-            <text x="25" y="80" textAnchor="middle" fill="#6a8aaa" fontSize="8">Principal</text>
+          <g transform="translate(382, 212)">
+            <circle cx="28" cy="28" r="28" fill="#182431" stroke="#25a45a" strokeWidth="2" />
+            <polygon points="15,11 15,45 43,28" fill="#25a45a" opacity="0.7" />
+            <text x="28" y="68" textAnchor="middle" fill="#8aabca" fontSize="12" fontWeight="bold">P-101</text>
+            <text x="28" y="82" textAnchor="middle" fill="#6a8aaa" fontSize="11">Bomba Principal</text>
           </g>
 
           {/* ── P-102 Bomba Reserva (abaixo de P-101) ── */}
-          <g transform="translate(430, 290)">
-            <circle cx="25" cy="25" r="23" fill="#182431" stroke="#f5b942" strokeWidth="2" />
-            <polygon points="14,10 14,40 38,25" fill="#f5b942" opacity="0.6" />
-            <text x="25" y="58" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">P-102</text>
-            <text x="25" y="70" textAnchor="middle" fill="#6a8aaa" fontSize="8">Bomba</text>
-            <text x="25" y="80" textAnchor="middle" fill="#6a8aaa" fontSize="8">Reserva</text>
-            {/* conexão P-102 → linha principal */}
-            <line x1="25" y1="-65" x2="25" y2="0" stroke="#5a7a9a" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
+          <g transform="translate(382, 315)">
+            <circle cx="28" cy="28" r="28" fill="#182431" stroke="#f5b942" strokeWidth="2" />
+            <polygon points="15,11 15,45 43,28" fill="#f5b942" opacity="0.6" />
+            <text x="28" y="68" textAnchor="middle" fill="#8aabca" fontSize="12" fontWeight="bold">P-102</text>
+            <text x="28" y="82" textAnchor="middle" fill="#6a8aaa" fontSize="11">Bomba Reserva</text>
+            {/* conexão P-102 → processo (standby) */}
+            <line x1="28" y1="0" x2="28" y2="-47" stroke="#5a7a9a" strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#seta-sinal)" />
           </g>
 
-          {/* ── F-101 Filtro ── */}
-          <g transform="translate(570, 165)">
-            <rect x="0" y="0" width="60" height="70" rx="6" fill="#182431" stroke="#3a6a9a" strokeWidth="2" />
-            <line x1="10" y1="20" x2="50" y2="20" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
-            <line x1="10" y1="30" x2="50" y2="30" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
-            <line x1="10" y1="40" x2="50" y2="40" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
-            <line x1="10" y1="50" x2="50" y2="50" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
-            <text x="30" y="82" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">F-101</text>
-            <text x="30" y="94" textAnchor="middle" fill="#6a8aaa" fontSize="9">Filtro</text>
+          {/* ── F-101 Filtro de Processo ── */}
+          <g transform="translate(528, 203)">
+            <rect x="0" y="0" width="66" height="74" rx="6" fill="#182431" stroke="#3a6a9a" strokeWidth="2" />
+            <line x1="10" y1="22" x2="56" y2="22" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
+            <line x1="10" y1="33" x2="56" y2="33" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
+            <line x1="10" y1="44" x2="56" y2="44" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
+            <line x1="10" y1="55" x2="56" y2="55" stroke="#3a6a9a" strokeWidth="1" strokeDasharray="3 2" />
+            <text x="33" y="88" textAnchor="middle" fill="#8aabca" fontSize="12" fontWeight="bold">F-101</text>
+            <text x="33" y="103" textAnchor="middle" fill="#6a8aaa" fontSize="11">Filtro</text>
           </g>
-          {/* DPIT-101 acima do filtro */}
-          <g transform="translate(583, 118)">
-            <circle cx="16" cy="16" r="14" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="16" y="13" textAnchor="middle" fill="#8aabca" fontSize="6" fontWeight="bold">DPIT</text>
-            <text x="16" y="22" textAnchor="middle" fill="#8aabca" fontSize="6">101</text>
-            <line x1="16" y1="30" x2="16" y2="47" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="3 2" />
+
+          {/* ── DPIT-101 acima do Filtro ── */}
+          <g transform="translate(543, 125)">
+            <circle cx="18" cy="18" r="18" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="18" y="15" textAnchor="middle" fill="#8aabca" fontSize="9" fontWeight="bold">DPIT</text>
+            <text x="18" y="26" textAnchor="middle" fill="#8aabca" fontSize="10">101</text>
+            <line x1="18" y1="36" x2="18" y2="78" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
           </g>
 
           {/* ── TK-102 Tanque de Saída ── */}
-          <g transform="translate(750, 155)">
-            <rect x="0" y="0" width="90" height="90" rx="4" fill="#182431" stroke="#3a6a9a" strokeWidth="2" />
-            <path d="M0,10 Q45,-10 90,10" fill="none" stroke="#3a6a9a" strokeWidth="2" />
-            <line x1="0" y1="10" x2="0" y2="0" stroke="#3a6a9a" strokeWidth="2" />
-            <line x1="90" y1="10" x2="90" y2="0" stroke="#3a6a9a" strokeWidth="2" />
-            <text x="45" y="52" textAnchor="middle" fill="#8aabca" fontSize="11" fontWeight="bold">TK-102</text>
-            <text x="45" y="68" textAnchor="middle" fill="#6a8aaa" fontSize="9">Tanque</text>
-            <text x="45" y="80" textAnchor="middle" fill="#6a8aaa" fontSize="9">Saída</text>
+          <g transform="translate(745, 195)">
+            <rect x="0" y="0" width="95" height="95" rx="4" fill="#182431" stroke="#3a6a9a" strokeWidth="2" />
+            <path d="M0,12 Q47,-12 95,12" fill="none" stroke="#3a6a9a" strokeWidth="2" />
+            <line x1="0" y1="12" x2="0" y2="0" stroke="#3a6a9a" strokeWidth="2" />
+            <line x1="95" y1="12" x2="95" y2="0" stroke="#3a6a9a" strokeWidth="2" />
+            <text x="47" y="53" textAnchor="middle" fill="#8aabca" fontSize="13" fontWeight="bold">TK-102</text>
+            <text x="47" y="70" textAnchor="middle" fill="#6a8aaa" fontSize="11">Tanque de Saída</text>
           </g>
 
-          {/* FIT-102 após TK-102 */}
-          <g transform="translate(855, 180)">
-            <circle cx="20" cy="20" r="18" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="20" y="17" textAnchor="middle" fill="#8aabca" fontSize="7" fontWeight="bold">FIT</text>
-            <text x="20" y="27" textAnchor="middle" fill="#8aabca" fontSize="7">102</text>
-            <text x="20" y="50" textAnchor="middle" fill="#6a8aaa" fontSize="9">Saída</text>
+          {/* ── FIT-102 Transmissor de Vazão de Saída ── */}
+          <g transform="translate(902, 220)">
+            <circle cx="20" cy="20" r="20" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="20" y="17" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">FIT</text>
+            <text x="20" y="28" textAnchor="middle" fill="#8aabca" fontSize="10">102</text>
+            <text x="20" y="52" textAnchor="middle" fill="#6a8aaa" fontSize="10">m³/h</text>
           </g>
-          <line x1="840" y1="200" x2="855" y2="200" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
-          <line x1="875" y1="200" x2="960" y2="200" stroke="#8aabca" strokeWidth="3" markerEnd="url(#seta)" />
-          <text x="970" y="204" fill="#6a8aaa" fontSize="10">Processo</text>
+
+          {/* Label final: Processo */}
+          <text x="1130" y="244" fill="#8aabca" fontSize="12" fontWeight="bold">Processo</text>
 
           {/* ══════════════════════════════════════════
-              INSTRUMENTOS DE CAMPO (acima da linha)
+              INSTRUMENTOS DE CAMPO (acima da linha — y ≈ 110)
           ══════════════════════════════════════════ */}
 
           {/* LIT-101 — Nível TK-101 */}
-          <g transform="translate(58, 100)">
-            <line x1="18" y1="28" x2="18" y2="55" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="3 2" markerEnd="url(#seta-sinal)" />
-            <circle cx="18" cy="16" r="14" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="18" y="13" textAnchor="middle" fill="#8aabca" fontSize="7" fontWeight="bold">LIT</text>
-            <text x="18" y="22" textAnchor="middle" fill="#8aabca" fontSize="7">101</text>
-            <text x="18" y="-2" textAnchor="middle" fill="#6a8aaa" fontSize="8">Nível %</text>
+          <g transform="translate(59, 92)">
+            <circle cx="18" cy="18" r="18" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="18" y="15" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">LIT</text>
+            <text x="18" y="26" textAnchor="middle" fill="#8aabca" fontSize="10">101</text>
+            <text x="18" y="-6" textAnchor="middle" fill="#6a8aaa" fontSize="10">Nível %</text>
+            <line x1="18" y1="36" x2="18" y2="148" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
           </g>
 
-          {/* PIT-101 — Pressão linha (entre FIT-101 e P-101) */}
-          <g transform="translate(375, 100)">
-            <line x1="18" y1="28" x2="18" y2="80" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="3 2" markerEnd="url(#seta-sinal)" />
-            <circle cx="18" cy="16" r="14" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="18" y="13" textAnchor="middle" fill="#8aabca" fontSize="7" fontWeight="bold">PIT</text>
-            <text x="18" y="22" textAnchor="middle" fill="#8aabca" fontSize="7">101</text>
-            <text x="18" y="-2" textAnchor="middle" fill="#6a8aaa" fontSize="8">bar</text>
+          {/* PIT-101 — Pressão linha */}
+          <g transform="translate(330, 92)">
+            <circle cx="18" cy="18" r="18" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="18" y="15" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">PIT</text>
+            <text x="18" y="26" textAnchor="middle" fill="#8aabca" fontSize="10">101</text>
+            <text x="18" y="-6" textAnchor="middle" fill="#6a8aaa" fontSize="10">bar</text>
+            <line x1="18" y1="36" x2="18" y2="148" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
           </g>
 
           {/* TIT-101 — Temperatura */}
-          <g transform="translate(510, 100)">
-            <line x1="18" y1="28" x2="18" y2="75" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="3 2" markerEnd="url(#seta-sinal)" />
-            <circle cx="18" cy="16" r="14" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="18" y="13" textAnchor="middle" fill="#8aabca" fontSize="7" fontWeight="bold">TIT</text>
-            <text x="18" y="22" textAnchor="middle" fill="#8aabca" fontSize="7">101</text>
-            <text x="18" y="-2" textAnchor="middle" fill="#6a8aaa" fontSize="8">°C</text>
+          <g transform="translate(450, 92)">
+            <circle cx="18" cy="18" r="18" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="18" y="15" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">TIT</text>
+            <text x="18" y="26" textAnchor="middle" fill="#8aabca" fontSize="10">101</text>
+            <text x="18" y="-6" textAnchor="middle" fill="#6a8aaa" fontSize="10">°C</text>
+            <line x1="18" y1="36" x2="18" y2="148" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
+          </g>
+
+          {/* AIT-101 — pH (após filtro) */}
+          <g transform="translate(622, 92)">
+            <circle cx="18" cy="18" r="18" fill="#182431" stroke="#f5b942" strokeWidth="1.5" />
+            <text x="18" y="15" textAnchor="middle" fill="#f5b942" fontSize="10" fontWeight="bold">AIT</text>
+            <text x="18" y="26" textAnchor="middle" fill="#f5b942" fontSize="10">101</text>
+            <text x="18" y="-6" textAnchor="middle" fill="#6a8aaa" fontSize="10">pH</text>
+            <line x1="18" y1="36" x2="18" y2="148" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
+          </g>
+
+          {/* AIT-102 — Turbidez */}
+          <g transform="translate(712, 92)">
+            <circle cx="18" cy="18" r="18" fill="#182431" stroke="#f5b942" strokeWidth="1.5" />
+            <text x="18" y="15" textAnchor="middle" fill="#f5b942" fontSize="10" fontWeight="bold">AIT</text>
+            <text x="18" y="26" textAnchor="middle" fill="#f5b942" fontSize="10">102</text>
+            <text x="18" y="-6" textAnchor="middle" fill="#6a8aaa" fontSize="10">NTU</text>
+            <line x1="18" y1="36" x2="18" y2="148" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
           </g>
 
           {/* ══════════════════════════════════════════
-              LINHA DE DESCARTE (y = 340)
+              LINHA DE DESCARTE (y = 395)
           ══════════════════════════════════════════ */}
-          {/* Derivação do TK-101 para descarte */}
-          <line x1="85" y1="245" x2="85" y2="340" stroke="#5a7a9a" strokeWidth="2" />
-          <line x1="85" y1="340" x2="210" y2="340" stroke="#5a7a9a" strokeWidth="2" markerEnd="url(#seta)" />
+          {/* Derivação descendo do TK-101 */}
+          <line x1="77" y1="290" x2="77" y2="395" stroke="#5a7a9a" strokeWidth="2" />
+          <line x1="77" y1="395" x2="188" y2="395" stroke="#5a7a9a" strokeWidth="2" markerEnd="url(#seta-descarte)" />
 
           {/* XV-101 Válvula de Descarte */}
-          <g transform="translate(210, 328)">
+          <g transform="translate(188, 383)">
             <polygon points="0,12 16,0 16,24" fill="#2a4a6a" stroke="#d94b4b" strokeWidth="1.5" />
             <polygon points="30,12 14,0 14,24" fill="#2a4a6a" stroke="#d94b4b" strokeWidth="1.5" />
-            <line x1="15" y1="0" x2="15" y2="-14" stroke="#d94b4b" strokeWidth="1.5" />
-            <circle cx="15" cy="-20" r="8" fill="#182431" stroke="#d94b4b" strokeWidth="1.5" />
-            <text x="15" y="-16" textAnchor="middle" fill="#d94b4b" fontSize="7">XS</text>
-            <text x="15" y="36" textAnchor="middle" fill="#8aabca" fontSize="10" fontWeight="bold">XV-101</text>
-            <text x="15" y="48" textAnchor="middle" fill="#6a8aaa" fontSize="8">Descarte</text>
+            <line x1="15" y1="0" x2="15" y2="-16" stroke="#d94b4b" strokeWidth="1.5" />
+            <circle cx="15" cy="-24" r="10" fill="#182431" stroke="#d94b4b" strokeWidth="1.5" />
+            <text x="15" y="-20" textAnchor="middle" fill="#d94b4b" fontSize="9" fontWeight="bold">XS</text>
+            <text x="15" y="38" textAnchor="middle" fill="#8aabca" fontSize="12" fontWeight="bold">XV-101</text>
+            <text x="15" y="53" textAnchor="middle" fill="#6a8aaa" fontSize="11">Descarte</text>
           </g>
-          <line x1="242" y1="340" x2="330" y2="340" stroke="#5a7a9a" strokeWidth="2" markerEnd="url(#seta)" />
-          <text x="345" y="344" fill="#6a8aaa" fontSize="10">Descarte</text>
+          <line x1="220" y1="395" x2="340" y2="395" stroke="#5a7a9a" strokeWidth="2" markerEnd="url(#seta-descarte)" />
+          <text x="352" y="399" fill="#6a8aaa" fontSize="12">Descarte</text>
 
           {/* ══════════════════════════════════════════
-              LINHA DE DOSAGEM QUÍMICA (y = 420)
+              LINHA DE DOSAGEM QUÍMICA (y ≈ 495)
           ══════════════════════════════════════════ */}
-          <g transform="translate(300, 395)">
-            <rect x="0" y="0" width="60" height="50" rx="4" fill="#182431" stroke="#3a5a7a" strokeWidth="1.5" />
-            <text x="30" y="24" textAnchor="middle" fill="#8aabca" fontSize="9" fontWeight="bold">TK-201</text>
-            <text x="30" y="36" textAnchor="middle" fill="#6a8aaa" fontSize="8">Dosagem</text>
+
+          {/* TK-201 Tanque de Dosagem */}
+          <g transform="translate(330, 468)">
+            <rect x="0" y="0" width="65" height="55" rx="4" fill="#182431" stroke="#3a5a7a" strokeWidth="1.5" />
+            <text x="32" y="26" textAnchor="middle" fill="#8aabca" fontSize="11" fontWeight="bold">TK-201</text>
+            <text x="32" y="41" textAnchor="middle" fill="#6a8aaa" fontSize="10">Dosagem</text>
           </g>
 
           {/* P-201 Bomba Dosadora */}
-          <g transform="translate(390, 402)">
-            <circle cx="18" cy="18" r="16" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <polygon points="9,7 9,29 28,18" fill="#5a9acf" opacity="0.6" />
-            <text x="18" y="44" textAnchor="middle" fill="#8aabca" fontSize="9" fontWeight="bold">P-201</text>
+          <g transform="translate(420, 478)">
+            <circle cx="18" cy="18" r="17" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <polygon points="9,7 9,29 29,18" fill="#5a9acf" opacity="0.6" />
+            <text x="18" y="47" textAnchor="middle" fill="#8aabca" fontSize="11" fontWeight="bold">P-201</text>
           </g>
 
-          {/* FIT-201 Transmissor Dosagem */}
-          <g transform="translate(438, 402)">
-            <circle cx="16" cy="16" r="14" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
-            <text x="16" y="13" textAnchor="middle" fill="#8aabca" fontSize="7" fontWeight="bold">FIT</text>
-            <text x="16" y="22" textAnchor="middle" fill="#8aabca" fontSize="7">201</text>
+          {/* FIT-201 Transmissor de Dosagem */}
+          <g transform="translate(478, 480)">
+            <circle cx="16" cy="16" r="16" fill="#182431" stroke="#5a9acf" strokeWidth="1.5" />
+            <text x="16" y="13" textAnchor="middle" fill="#8aabca" fontSize="9" fontWeight="bold">FIT</text>
+            <text x="16" y="24" textAnchor="middle" fill="#8aabca" fontSize="10">201</text>
+            <text x="16" y="45" textAnchor="middle" fill="#6a8aaa" fontSize="10">L/h</text>
           </g>
 
-          {/* Linha de dosagem para linha principal */}
-          <line x1="360" y1="395" x2="360" y2="375" stroke="#5a7a9a" strokeWidth="1.5" />
-          <line x1="408" y1="395" x2="408" y2="375" stroke="#5a7a9a" strokeWidth="1.5" />
-          <line x1="454" y1="395" x2="454" y2="375" stroke="#5a7a9a" strokeWidth="1.5" />
-          <line x1="300" y1="420" x2="300" y2="395" stroke="#5a7a9a" strokeWidth="1.5" />
-          {/* seta para cima até linha principal */}
-          <line x1="454" y1="375" x2="454" y2="205" stroke="#5a7a9a" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#seta-sinal)" />
+          {/* Linhas horizontais de dosagem */}
+          <line x1="395" y1="495" x2="420" y2="495" stroke="#5a7a9a" strokeWidth="1.5" markerEnd="url(#seta-sinal)" />
+          <line x1="455" y1="495" x2="478" y2="495" stroke="#5a7a9a" strokeWidth="1.5" markerEnd="url(#seta-sinal)" />
+
+          {/* Seta dosagem subindo até linha principal */}
+          <line x1="494" y1="464" x2="494" y2="241" stroke="#5a7a9a" strokeWidth="1.5" strokeDasharray="5 3" markerEnd="url(#seta-sinal)" />
 
           {/* ══════════════════════════════════════════
-              ANALISADORES DE QUALIDADE
+              RODAPÉ — Legenda ISA
           ══════════════════════════════════════════ */}
-
-          {/* AIT-101 pH — após filtro */}
-          <g transform="translate(660, 100)">
-            <line x1="18" y1="28" x2="18" y2="65" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="3 2" markerEnd="url(#seta-sinal)" />
-            <circle cx="18" cy="16" r="14" fill="#182431" stroke="#f5b942" strokeWidth="1.5" />
-            <text x="18" y="13" textAnchor="middle" fill="#f5b942" fontSize="7" fontWeight="bold">AIT</text>
-            <text x="18" y="22" textAnchor="middle" fill="#f5b942" fontSize="7">101</text>
-            <text x="18" y="-2" textAnchor="middle" fill="#6a8aaa" fontSize="8">pH</text>
-          </g>
-
-          {/* AIT-102 Turbidez */}
-          <g transform="translate(700, 100)">
-            <line x1="18" y1="28" x2="18" y2="65" stroke="#5a7a9a" strokeWidth="1" strokeDasharray="3 2" markerEnd="url(#seta-sinal)" />
-            <circle cx="18" cy="16" r="14" fill="#182431" stroke="#f5b942" strokeWidth="1.5" />
-            <text x="18" y="13" textAnchor="middle" fill="#f5b942" fontSize="7" fontWeight="bold">AIT</text>
-            <text x="18" y="22" textAnchor="middle" fill="#f5b942" fontSize="7">102</text>
-            <text x="18" y="-2" textAnchor="middle" fill="#6a8aaa" fontSize="8">NTU</text>
-          </g>
-
-          {/* ══════════════════════════════════════════
-              TÍTULO E LEGENDA DO P&ID
-          ══════════════════════════════════════════ */}
-          <rect x="0" y="454" width="1000" height="26" fill="#0d1520" />
-          <text x="10" y="470" fill="#5a8aaa" fontSize="10">
+          <rect x="0" y="572" width="1200" height="28" fill="#0d1520" />
+          <text x="12" y="588" fill="#5a8aaa" fontSize="11">
             P&amp;ID Conceitual — Planta de Tratamento de Água | Norma ISA 5.1 (simplificada)
           </text>
-          <text x="600" y="470" fill="#5a8aaa" fontSize="10">
-            ○ Instrumento de campo &nbsp;|&nbsp; ▷◁ Válvula &nbsp;|&nbsp; ⊙▶ Bomba &nbsp;|&nbsp; ─── Linha processo &nbsp;|&nbsp; - - Sinal
+          <text x="660" y="588" fill="#5a8aaa" fontSize="11">
+            ○ Instrumento  |  ▷◁ Válvula  |  ⊙▶ Bomba  |  ─── Processo  |  - - Sinal
           </text>
         </svg>
       </div>
@@ -257,20 +258,20 @@ export function PidConceitual() {
         <h3 className="legenda-titulo">Tags do Diagrama</h3>
         <div className="pid-legenda-grid">
           {[
-            { tag: 'TK-101', desc: 'Tanque de entrada (água bruta)' },
-            { tag: 'TK-102', desc: 'Tanque de saída (água tratada)' },
-            { tag: 'P-101',  desc: 'Bomba principal (operação normal)' },
-            { tag: 'P-102',  desc: 'Bomba reserva (redundância)' },
-            { tag: 'P-201',  desc: 'Bomba dosadora de produto químico' },
-            { tag: 'FV-101', desc: 'Válvula de controle de vazão de entrada' },
-            { tag: 'XV-101', desc: 'Válvula de descarte (shutdown)' },
-            { tag: 'F-101',  desc: 'Filtro de processo' },
+            { tag: 'TK-101',  desc: 'Tanque de entrada (água bruta)' },
+            { tag: 'TK-102',  desc: 'Tanque de saída (água tratada)' },
+            { tag: 'P-101',   desc: 'Bomba principal (operação normal)' },
+            { tag: 'P-102',   desc: 'Bomba reserva (redundância)' },
+            { tag: 'P-201',   desc: 'Bomba dosadora de produto químico' },
+            { tag: 'FV-101',  desc: 'Válvula de controle de vazão de entrada' },
+            { tag: 'XV-101',  desc: 'Válvula de descarte (shutdown)' },
+            { tag: 'F-101',   desc: 'Filtro de processo' },
             { tag: 'FIT-101', desc: 'Transmissor de vazão de entrada (m³/h)' },
             { tag: 'FIT-102', desc: 'Transmissor de vazão de saída (m³/h)' },
             { tag: 'FIT-201', desc: 'Transmissor de vazão de dosagem (L/h)' },
             { tag: 'LIT-101', desc: 'Transmissor de nível do tanque de entrada (%)' },
             { tag: 'PIT-101', desc: 'Transmissor de pressão da linha (bar)' },
-            { tag: 'DPIT-101', desc: 'Transmissor de pressão diferencial do filtro (bar)' },
+            { tag: 'DPIT-101',desc: 'Transmissor de pressão diferencial do filtro (bar)' },
             { tag: 'TIT-101', desc: 'Transmissor de temperatura (°C)' },
             { tag: 'AIT-101', desc: 'Analisador de pH' },
             { tag: 'AIT-102', desc: 'Analisador de turbidez (NTU)' },

@@ -14,12 +14,14 @@ import type { AcoesControle } from '../dominio/acoesControle'
 import { TipoAlarme } from '../dominio/alarme'
 import type { Alarme } from '../dominio/alarme'
 import type { EstadoPlanta } from '../dominio/estadoPlanta'
+import { ArquiteturaAutomacao } from './ArquiteturaAutomacao'
 import { CartaoVariavel } from './CartaoVariavel'
 import { ControleSimulacao } from './ControleSimulacao'
 import { PainelAlarmes } from './PainelAlarmes'
 import { PainelAtuadores } from './PainelAtuadores'
 import { PainelAjusteVariaveis } from './PainelAjusteVariaveis'
 import { PainelCenarios } from './PainelCenarios'
+import { SecaoArquitetura } from './SecaoArquitetura'
 import { SinoticoPlanta } from './SinoticoPlanta'
 
 afterEach(() => {
@@ -73,6 +75,80 @@ describe('CartaoVariavel', () => {
 
     expect(screen.getByText('Alerta')).toBeInTheDocument()
     expect(container.firstElementChild).toHaveClass('cartao-variavel--alerta')
+  })
+})
+
+describe('ArquiteturaAutomacao', () => {
+  it('renderiza as três camadas principais empilhadas', () => {
+    render(<ArquiteturaAutomacao />)
+
+    expect(
+      screen.getByRole('heading', { name: 'Arquitetura de Automação' }),
+    ).toBeInTheDocument()
+    expect(screen.getByLabelText('Nível de Supervisão')).toBeInTheDocument()
+    expect(screen.getByLabelText('Nível de Controle')).toBeInTheDocument()
+    expect(screen.getByLabelText('Nível de Campo')).toBeInTheDocument()
+  })
+
+  it('exibe conectores de rede, badges e equivalência didática', () => {
+    render(<ArquiteturaAutomacao />)
+
+    expect(
+      screen.getByLabelText('Rede industrial entre supervisão e controle'),
+    ).toHaveTextContent('Modbus TCP')
+    expect(
+      screen.getByLabelText('Rede / sinais industriais entre controle e campo'),
+    ).toHaveTextContent('4-20 mA')
+    expect(screen.getAllByText(/Simulado por:/)).toHaveLength(3)
+    expect(screen.getByText('Sistema real x sistema simulado')).toBeVisible()
+  })
+
+  it('agrupa instrumentos de campo por função', () => {
+    render(<ArquiteturaAutomacao />)
+
+    expect(screen.getByRole('heading', { name: 'Medição' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Atuação discreta' })).toBeVisible()
+    expect(screen.getByText('FIT-101')).toBeInTheDocument()
+    expect(screen.getByText('P-201')).toBeInTheDocument()
+  })
+})
+
+describe('SecaoArquitetura', () => {
+  it('renderiza definição, diagrama e tabela com 6 pares de equivalência', () => {
+    render(<SecaoArquitetura />)
+
+    expect(
+      screen.getAllByRole('heading', { name: 'Arquitetura de Automação' }),
+    ).toHaveLength(2)
+    expect(
+      screen.getByText(/define como instrumentos, controladores/i),
+    ).toBeVisible()
+    expect(screen.getByLabelText('Nível de Supervisão')).toBeInTheDocument()
+
+    const tabela = screen.getByRole('table')
+    expect(within(tabela).getAllByRole('row')).toHaveLength(7)
+    expect(within(tabela).getByText('Instrumentos de campo')).toBeVisible()
+    expect(within(tabela).getByText('Rede industrial')).toBeVisible()
+  })
+
+  it('mantém o detalhamento recolhido e revela os 4 blocos ao clicar', () => {
+    render(<SecaoArquitetura />)
+
+    const detalhe = screen
+      .getByText('Ver explicação detalhada por nível')
+      .closest('details')
+
+    expect(detalhe).not.toBeNull()
+    expect(detalhe).not.toHaveAttribute('open')
+
+    fireEvent.click(screen.getByText('Ver explicação detalhada por nível'))
+
+    expect(detalhe).toHaveAttribute('open')
+    expect(screen.getByRole('heading', { name: 'Nível de Campo' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Nível de Controle' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Nível de Supervisão' }))
+      .toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Rede Industrial' })).toBeVisible()
   })
 })
 

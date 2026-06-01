@@ -8,6 +8,7 @@ import { PainelAlarmes } from '../componentes/PainelAlarmes'
 import { PainelAtuadores } from '../componentes/PainelAtuadores'
 import { PainelCenarios } from '../componentes/PainelCenarios'
 import { PidConceitual } from '../componentes/PidConceitual'
+import { SecaoArquitetura } from '../componentes/SecaoArquitetura'
 import { SinoticoPlanta } from '../componentes/SinoticoPlanta'
 import { obterMetadados } from '../dominio/equipamentos'
 import { TipoAlarme } from '../dominio/alarme'
@@ -170,6 +171,7 @@ export function PaginaPrincipal(): JSX.Element {
             <code>controle/regras_causa_efeito.py</code>. O <strong>P&amp;ID Conceitual</strong> representa
             a disposição dos equipamentos e instrumentos seguindo a norma ISA 5.1 simplificada.
           </p>
+          <SecaoArquitetura />
           <PidConceitual />
           <MatrizCausaEfeito />
         </div>
