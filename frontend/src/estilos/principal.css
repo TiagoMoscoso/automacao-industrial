@@ -1,0 +1,339 @@
+:root {
+  --cor-fundo: #111820;
+  --cor-painel: #182431;
+  --cor-painel-claro: #223142;
+  --cor-borda: #3a4a5c;
+  --cor-texto: #f2f6fa;
+  --cor-texto-secundario: #b7c4d2;
+  --cor-normal: #25a45a;
+  --cor-alerta: #f5b942;
+  --cor-falha: #d94b4b;
+  --cor-comando: #2f6f9f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.pagina-principal {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.cabecalho-principal {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cabecalho-principal h1 {
+  font-size: 1.65rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.cabecalho-principal__subtitulo {
+  color: var(--cor-texto-secundario);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.indicador-global {
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 14px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.indicador-global--normal {
+  background: var(--cor-normal);
+}
+
+.indicador-global--falha {
+  background: var(--cor-falha);
+}
+
+.mensagem-erro {
+  background: #3a1f22;
+  border: 1px solid var(--cor-falha);
+  border-radius: 6px;
+  color: #ffdede;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+}
+
+.grade-supervisoria {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
+  grid-template-areas:
+    "sinotico lateral"
+    "variaveis variaveis"
+    "ajuste ajuste";
+}
+
+.area-sinotico {
+  grid-area: sinotico;
+}
+
+.painel-variaveis {
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  grid-area: variaveis;
+  padding: 16px;
+}
+
+.area-lateral {
+  align-content: start;
+  display: grid;
+  gap: 16px;
+  grid-area: lateral;
+}
+
+.area-ajuste {
+  border-top: 1px solid var(--cor-borda);
+  grid-area: ajuste;
+  padding-top: 8px;
+}
+
+.area-ajuste h2 {
+  color: var(--cor-texto-secundario);
+  font-size: 0.95rem;
+}
+
+.grade-variaveis {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.cartao-variavel,
+.painel-alarmes,
+.painel-atuadores,
+.painel-cenarios,
+.painel-ajuste-variaveis,
+.sinotico-planta {
+  background: var(--cor-painel);
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+.painel-variaveis h2,
+.painel-alarmes h2,
+.painel-atuadores h2,
+.painel-cenarios h2,
+.painel-ajuste-variaveis h2,
+.sinotico-planta h2 {
+  font-size: 1.05rem;
+  margin: 0 0 12px;
+}
+
+.cartao-variavel {
+  min-width: 0;
+}
+
+.cartao-variavel--normal {
+  background: #173826;
+  border-color: var(--cor-normal);
+}
+
+.cartao-variavel--alerta {
+  background: #3b321b;
+  border-color: var(--cor-alerta);
+}
+
+.cartao-variavel--falha {
+  background: #3b2024;
+  border-color: var(--cor-falha);
+}
+
+.cartao-variavel__valor {
+  font-size: 1.45rem;
+}
+
+.cartao-variavel__estado {
+  background: var(--cor-painel-claro);
+}
+
+.cartao-variavel--normal .cartao-variavel__estado,
+.estado-processo--liberado,
+.atuador__estado--ativo {
+  background: var(--cor-normal);
+}
+
+.cartao-variavel--alerta .cartao-variavel__estado {
+  background: var(--cor-alerta);
+  color: #1b1b1b;
+}
+
+.cartao-variavel--falha .cartao-variavel__estado,
+.estado-processo--bloqueado,
+.atuador__estado--inativo {
+  background: var(--cor-falha);
+}
+
+.alarme-item,
+.atuador {
+  background: var(--cor-painel-claro);
+  border-color: var(--cor-borda);
+}
+
+.alarme-item {
+  border-left-color: var(--cor-falha);
+}
+
+.sem-alarmes {
+  color: #7ee2a3;
+}
+
+.botao-cenario,
+.botao-simulacao {
+  background: var(--cor-comando);
+}
+
+.botao-cenario:focus-visible,
+.botao-simulacao:focus-visible,
+.campo-ajuste input:focus-visible,
+.ajuste-emergencia input:focus-visible {
+  outline: 3px solid var(--cor-alerta);
+  outline-offset: 2px;
+}
+
+.botao-cenario--emergencia {
+  background: var(--cor-falha);
+}
+
+.botao-simulacao:disabled {
+  background: #556373;
+}
+
+.sinotico-planta__svg {
+  background: #d9e2ec;
+  border-radius: 4px;
+}
+
+.ajuste-variaveis__grade {
+  display: grid;
+  gap: 10px;
+}
+
+.campo-ajuste {
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  color: var(--cor-texto-secundario);
+  display: grid;
+  font-weight: 700;
+  gap: 8px;
+  padding: 10px;
+}
+
+.campo-ajuste--critico {
+  border-color: var(--cor-falha);
+  border-left: 8px solid var(--cor-falha);
+}
+
+.campo-ajuste__cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.campo-ajuste__valor {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.campo-ajuste__tag,
+.campo-ajuste__valor {
+  color: var(--cor-texto);
+}
+
+.campo-ajuste__alarme {
+  color: #ffb3b3;
+  font-weight: 700;
+}
+
+.campo-ajuste input {
+  background: #0f1720;
+  border: 1px solid var(--cor-borda);
+  border-radius: 4px;
+  color: var(--cor-texto);
+  width: 100%;
+}
+
+.campo-ajuste input[type='range'] {
+  accent-color: var(--cor-comando);
+  padding: 0;
+}
+
+.campo-ajuste--critico input[type='range'] {
+  accent-color: var(--cor-falha);
+}
+
+.ajuste-emergencia {
+  align-items: center;
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  color: var(--cor-texto);
+  display: flex;
+  font-weight: 700;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px;
+}
+
+.ajuste-emergencia--ativo {
+  border-color: var(--cor-falha);
+  color: #ffb3b3;
+}
+
+@media (max-width: 1100px) {
+  .grade-supervisoria {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sinotico"
+      "lateral"
+      "variaveis"
+      "ajuste";
+  }
+}
+
+@media (max-width: 680px) {
+  .pagina-principal {
+    padding: 14px;
+  }
+
+  .cabecalho-principal {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .indicador-global {
+    text-align: center;
+    white-space: normal;
+  }
+}

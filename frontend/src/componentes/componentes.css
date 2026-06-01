@@ -1,0 +1,475 @@
+/* Base component styles — dark theme via custom properties */
+.cartao-variavel,
+.painel-alarmes,
+.painel-atuadores,
+.painel-cenarios,
+.controle-simulacao,
+.painel-ajuste-variaveis,
+.sinotico-planta {
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  background: var(--cor-painel);
+  color: var(--cor-texto);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 16px;
+}
+
+.cartao-variavel {
+  min-width: 160px;
+}
+
+/* CartaoVariavel state themes */
+.cartao-variavel--normal {
+  background: #173826;
+  border-color: var(--cor-normal);
+}
+
+.cartao-variavel--alerta {
+  background: #3b321b;
+  border-color: var(--cor-alerta);
+}
+
+.cartao-variavel--falha {
+  background: #3b2024;
+  border-color: var(--cor-falha);
+}
+
+/* CartaoVariavel typography hierarchy */
+.cartao-variavel__tag,
+.atuador__tag {
+  color: var(--cor-texto-secundario);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cartao-variavel__descricao {
+  color: var(--cor-texto-secundario, #8a9bb5);
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  margin-top: 0.1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cartao-variavel__nome {
+  color: var(--cor-texto-secundario);
+  font-size: 0.85rem;
+  margin: 2px 0 6px;
+}
+
+.cartao-variavel__valor {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 4px 0 6px;
+}
+
+.cartao-variavel__unidade {
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* State badge shared base */
+.cartao-variavel__estado,
+.estado-processo,
+.atuador__estado {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+/* Processo indicator — block for full-width readability */
+.estado-processo {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  padding: 7px 12px;
+  text-align: center;
+}
+
+.cartao-variavel__estado {
+  background: var(--cor-painel-claro);
+}
+
+.cartao-variavel--normal .cartao-variavel__estado,
+.estado-processo--liberado,
+.atuador__estado--ativo {
+  background: var(--cor-normal);
+  color: #fff;
+}
+
+.cartao-variavel--alerta .cartao-variavel__estado {
+  background: var(--cor-alerta);
+  color: #1b1b1b;
+}
+
+.cartao-variavel--falha .cartao-variavel__estado,
+.estado-processo--bloqueado,
+.atuador__estado--inativo {
+  background: var(--cor-falha);
+  color: #fff;
+}
+
+/* Actuator state symbol — visual only, not in textContent */
+.atuador__estado--ativo::before {
+  content: '● ';
+}
+
+.atuador__estado--inativo::before {
+  content: '○ ';
+}
+
+/* Lists */
+.lista-alarmes,
+.lista-atuadores,
+.lista-cenarios,
+.botoes-simulacao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.lista-atuadores {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+/* Alarm and actuator cards */
+.alarme-item,
+.atuador {
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+/* Alarm severity — alerta (yellow left border) */
+.alarme-item {
+  border-left: 4px solid var(--cor-alerta);
+}
+
+/* Critical alarm (EMERGENCIA, NIVEL_ALTO_ALTO) — red left border + dark bg */
+.alarme-item--critico {
+  background: #3b2024;
+  border-left: 4px solid var(--cor-falha);
+}
+
+.sem-alarmes {
+  color: var(--cor-normal);
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* Scenario and simulation buttons */
+.botao-cenario,
+.botao-simulacao {
+  background: var(--cor-comando);
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 12px;
+}
+
+/* Emergency scenario — full-width row with visual separation */
+.botao-cenario--emergencia {
+  background: var(--cor-falha);
+  margin-top: 8px;
+  width: 100%;
+}
+
+.botao-simulacao:disabled {
+  background: #556373;
+  cursor: not-allowed;
+}
+
+/* Variable adjustment fields */
+.ajuste-variaveis__grade {
+  display: grid;
+  gap: 10px;
+}
+
+.campo-ajuste {
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+
+.campo-ajuste--critico {
+  border-color: var(--cor-falha);
+  border-left: 8px solid var(--cor-falha);
+}
+
+.campo-ajuste__cabecalho {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  justify-content: space-between;
+}
+
+.campo-ajuste__valor {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.campo-ajuste__tag,
+.campo-ajuste__valor,
+.campo-ajuste__alarme {
+  font-weight: 700;
+}
+
+.campo-ajuste__alarme {
+  color: #ffb3b3;
+}
+
+.campo-ajuste__descricao {
+  color: var(--cor-texto-secundario, #8a9bb5);
+  display: block;
+  font-size: 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ajuste-emergencia {
+  align-items: center;
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  display: flex;
+  font-weight: 700;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px;
+}
+
+.ajuste-emergencia--ativo {
+  border-color: var(--cor-falha);
+  color: #ffb3b3;
+}
+
+/* SVG synoptic */
+.sinotico-planta__svg {
+  height: auto;
+  max-width: 100%;
+}
+
+.linha-processo {
+  stroke: #627383;
+  stroke-width: 4;
+}
+
+.linha-processo--ativa {
+  stroke: #2f8f7b;
+}
+
+.linha-processo--alerta {
+  stroke: var(--cor-falha);
+}
+
+.equipamento {
+  stroke: #2f3c47;
+  stroke-width: 2;
+}
+
+.equipamento--inativo {
+  fill: #c7ced6;
+}
+
+.equipamento--ativo {
+  fill: #8fb8b2;
+  stroke: #2f6f66;
+}
+
+.equipamento--alerta {
+  fill: #f0c56a;
+  stroke: #9a6b13;
+}
+
+.equipamento--falha {
+  fill: #d95b5b;
+  stroke: #8b2525;
+}
+
+.equipamento--bloqueado {
+  fill: #6f3e46;
+  stroke: #d95b5b;
+}
+
+.equipamento--bloqueado + .rotulo-sinotico,
+.equipamento--bloqueado ~ .valor-sinotico {
+  fill: #fff3f3;
+}
+
+.rotulo-sinotico {
+  fill: #17202a;
+  font-size: 12px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.equipamento__descricao {
+  fill: #223142;
+  font-size: 8px;
+  font-weight: 400;
+  opacity: 0.7;
+  text-anchor: middle;
+}
+
+.equipamento--bloqueado ~ .equipamento__descricao,
+.equipamento--falha ~ .equipamento__descricao {
+  fill: #fff3f3;
+  opacity: 0.8;
+}
+
+.valor-sinotico {
+  fill: #223142;
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* Badge de status */
+.status-badge {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status--normal    { background-color: var(--cor-normal);  color: #000; }
+.status--baixo     { background-color: var(--cor-alerta);  color: #000; }
+.status--alto      { background-color: var(--cor-alerta);  color: #000; }
+.status--atencao   { background-color: var(--cor-alerta);  color: #000; }
+.status--critico   { background-color: var(--cor-falha);   color: #fff; }
+.status--desconhecido {
+  background-color: transparent;
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-secundario);
+}
+
+/* Faixa operacional */
+.campo-ajuste__faixa {
+  color: var(--cor-texto-secundario);
+  font-size: 0.72rem;
+  margin: 2px 0;
+}
+
+/* Impacto operacional */
+.campo-ajuste__impacto {
+  color: var(--cor-texto-secundario);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  margin: 4px 0;
+}
+
+/* Accordion de explicação da tag */
+.campo-ajuste__details {
+  border-top: 1px solid var(--cor-borda);
+  margin-top: 6px;
+  padding-top: 4px;
+}
+
+.campo-ajuste__details summary {
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+  font-size: 0.72rem;
+  list-style: none;
+  user-select: none;
+}
+
+.campo-ajuste__details summary::-webkit-details-marker { display: none; }
+
+.campo-ajuste__details[open] summary { color: var(--cor-texto); }
+
+.campo-ajuste__explicacao {
+  color: var(--cor-texto-secundario);
+  display: grid;
+  font-size: 0.7rem;
+  gap: 2px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+.campo-ajuste__explicacao strong { color: var(--cor-texto); }
+
+/* Cabeçalho explicativo */
+.ajuste-variaveis__introducao {
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: var(--cor-texto-secundario);
+  line-height: 1.5;
+}
+.ajuste-variaveis__introducao p + p {
+  margin-top: 4px;
+}
+.ajuste-variaveis__nota-didatica {
+  font-style: italic;
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+/* Guia de tags industriais */
+.ajuste-variaveis__guia-tags {
+  margin-bottom: 16px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 8px 12px;
+  background-color: var(--cor-painel-claro);
+}
+.ajuste-variaveis__guia-tags > summary {
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  color: var(--cor-texto-secundario);
+}
+.ajuste-variaveis__guia-tags > summary::-webkit-details-marker { display: none; }
+.ajuste-variaveis__guia-tags[open] > summary { color: var(--cor-texto); }
+.ajuste-variaveis__guia-conteudo {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--cor-texto-secundario);
+  line-height: 1.5;
+}
+.ajuste-variaveis__guia-conteudo p { margin: 6px 0; }
+.ajuste-variaveis__guia-conteudo ul { padding-left: 16px; margin: 4px 0; }
+.ajuste-variaveis__guia-conteudo li { margin: 2px 0; }
+
+/* Tabela de prefixos */
+.ajuste-variaveis__tabela-prefixos {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: 0.72rem;
+}
+.ajuste-variaveis__tabela-prefixos th,
+.ajuste-variaveis__tabela-prefixos td {
+  text-align: left;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.ajuste-variaveis__tabela-prefixos th {
+  color: var(--cor-texto);
+  font-weight: 600;
+}

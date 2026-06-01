@@ -1,0 +1,11 @@
+{
+  "model": "sonnet",
+  "env": {
+    "CLAUDE_CODE_EFFORT_LEVEL": "low"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(compozy tasks *)"
+    ]
+  }
+}

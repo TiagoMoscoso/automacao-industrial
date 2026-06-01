@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Backend Python",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "pythonPath": "${workspaceFolder}/.venv/bin/python",
+      "module": "uvicorn",
+      "args": [
+        "automacao_industrial.aplicacao.fabrica_aplicacao:criar_aplicacao",
+        "--factory",
+        "--reload",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "AMBIENTE": "desenvolvimento",
+        "PYTHONPATH": "${workspaceFolder}/backend/src",
+        "UVICORN_RELOAD_DIRS": "${workspaceFolder}/backend/src"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Frontend React",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend/src",
+      "preLaunchTask": "Rodar frontend (dev)",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*",
+        "/src/*": "${webRoot}/*",
+        "vite:///src/*": "${webRoot}/*",
+        "file:///*": "/*"
+      }
+    }
+  ]
+}
