@@ -337,3 +337,343 @@ input {
     white-space: normal;
   }
 }
+
+/* ══════════════════════════════════════════
+   Navegação de abas
+══════════════════════════════════════════ */
+.navegacao-abas {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.75rem 1.5rem 0;
+  border-bottom: 2px solid var(--cor-borda);
+  margin-bottom: 1rem;
+}
+
+.aba-botao {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.5rem 1.25rem;
+  margin-bottom: -2px;
+  cursor: pointer;
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.15s, border-color 0.15s;
+  border-radius: 4px 4px 0 0;
+}
+
+.aba-botao:hover {
+  color: var(--cor-texto);
+  background: var(--cor-painel-claro);
+}
+
+.aba-botao--ativa {
+  color: var(--cor-texto);
+  border-bottom-color: var(--cor-comando);
+  background: var(--cor-painel);
+}
+
+/* ══════════════════════════════════════════
+   Seções compartilhadas (Matriz + P&ID)
+══════════════════════════════════════════ */
+.secao-titulo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin: 0 0 0.5rem 0;
+  border-left: 3px solid var(--cor-comando);
+  padding-left: 0.6rem;
+}
+
+.secao-descricao {
+  font-size: 0.85rem;
+  color: var(--cor-texto-secundario);
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+.secao-descricao code {
+  background: var(--cor-painel-claro);
+  color: var(--cor-alerta);
+  padding: 0 3px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.legenda-titulo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+  margin: 0 0 0.5rem 0;
+}
+
+.legenda-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.legenda-lista li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--cor-texto-secundario);
+}
+
+.legenda-simbolo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.legenda-simbolo.ativo {
+  background: var(--cor-normal);
+  color: #fff;
+}
+
+.legenda-simbolo.inativo {
+  background: var(--cor-painel-claro);
+  border: 1px solid var(--cor-borda);
+}
+
+.legenda-tag-exemplo {
+  background: var(--cor-comando);
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.legenda-codigo {
+  background: var(--cor-painel-claro);
+  color: var(--cor-alerta);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+.legenda-nota {
+  font-size: 0.8rem;
+  color: var(--cor-texto-secundario);
+  background: var(--cor-painel-claro);
+  border-left: 3px solid var(--cor-alerta);
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.legenda-nota code {
+  color: var(--cor-alerta);
+  font-size: 0.78rem;
+}
+
+/* ══════════════════════════════════════════
+   Matriz de Causa e Efeito
+══════════════════════════════════════════ */
+.matriz-causa-efeito {
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.matriz-container {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.matriz-tabela {
+  border-collapse: collapse;
+  min-width: 700px;
+  width: 100%;
+}
+
+.matriz-celula-vazia {
+  min-width: 220px;
+}
+
+.matriz-cabecalho-coluna {
+  vertical-align: bottom;
+  padding: 0 4px 8px;
+  min-width: 90px;
+}
+
+.matriz-cabecalho-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transform: rotate(-40deg);
+  transform-origin: bottom center;
+  white-space: nowrap;
+  padding-bottom: 4px;
+}
+
+.matriz-efeito-label {
+  font-size: 0.73rem;
+  color: var(--cor-texto-secundario);
+  font-weight: 500;
+}
+
+.matriz-tag {
+  font-size: 0.68rem;
+  background: var(--cor-comando);
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.matriz-linha:nth-child(even) {
+  background: var(--cor-painel-claro);
+}
+
+.matriz-linha:hover {
+  background: #1e3040;
+}
+
+.matriz-celula-causa {
+  padding: 0.5rem 0.75rem;
+  border-right: 2px solid var(--cor-borda);
+}
+
+.matriz-causa-label {
+  display: block;
+  font-size: 0.83rem;
+  color: var(--cor-texto);
+}
+
+.matriz-alarme-ref {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--cor-alerta);
+  font-family: monospace;
+  margin-top: 2px;
+}
+
+.matriz-celula-relacao {
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid var(--cor-borda);
+  font-size: 0.85rem;
+  font-weight: bold;
+  width: 60px;
+}
+
+.matriz-ativo {
+  color: var(--cor-normal);
+  background: rgba(37, 164, 90, 0.1);
+}
+
+.matriz-inativo {
+  color: transparent;
+}
+
+.matriz-legenda {
+  border-top: 1px solid var(--cor-borda);
+  padding-top: 1rem;
+}
+
+/* ══════════════════════════════════════════
+   P&ID Conceitual
+══════════════════════════════════════════ */
+.pid-conceitual {
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.pid-container {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.pid-svg {
+  width: 100%;
+  max-width: 1000px;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+}
+
+.pid-legenda {
+  border-top: 1px solid var(--cor-borda);
+  padding-top: 1rem;
+}
+
+.pid-legenda-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.4rem;
+}
+
+.pid-legenda-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.pid-tag {
+  background: var(--cor-comando);
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  font-family: monospace;
+}
+
+.pid-tag-desc {
+  color: var(--cor-texto-secundario);
+}
+
+/* ══════════════════════════════════════════
+   Aba Documentação Técnica
+══════════════════════════════════════════ */
+.documentacao-tecnica {
+  padding: 1rem 0;
+}
+
+.documentacao-intro {
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-left: 4px solid var(--cor-normal);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-secundario);
+  line-height: 1.6;
+}
+
+.documentacao-intro strong {
+  color: var(--cor-texto);
+}
+
+.documentacao-intro code {
+  background: var(--cor-painel-claro);
+  color: var(--cor-alerta);
+  padding: 0 3px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}

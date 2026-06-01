@@ -2,10 +2,12 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { CartaoVariavel } from '../componentes/CartaoVariavel'
 import type { EstadoCartaoVariavel } from '../componentes/CartaoVariavel'
+import { MatrizCausaEfeito } from '../componentes/MatrizCausaEfeito'
 import { PainelAjusteVariaveis } from '../componentes/PainelAjusteVariaveis'
 import { PainelAlarmes } from '../componentes/PainelAlarmes'
 import { PainelAtuadores } from '../componentes/PainelAtuadores'
 import { PainelCenarios } from '../componentes/PainelCenarios'
+import { PidConceitual } from '../componentes/PidConceitual'
 import { SinoticoPlanta } from '../componentes/SinoticoPlanta'
 import { obterMetadados } from '../dominio/equipamentos'
 import { TipoAlarme } from '../dominio/alarme'
@@ -13,11 +15,14 @@ import type { EstadoPlanta } from '../dominio/estadoPlanta'
 import * as clienteApiPlanta from '../servicos/clienteApiPlanta'
 import '../estilos/principal.css'
 
+type AbaAtiva = 'supervisorio' | 'documentacao'
+
 const INTERVALO_POLLING_MS = 1000
 
 export function PaginaPrincipal(): JSX.Element {
   const [estado, setEstado] = useState<EstadoPlanta>(estadoInicialPlanta)
   const [mensagemErro, setMensagemErro] = useState<string | null>(null)
+  const [abaAtiva, setAbaAtiva] = useState<AbaAtiva>('supervisorio')
 
   const atualizarEstado = useCallback(async (): Promise<void> => {
     try {
@@ -91,50 +96,84 @@ export function PaginaPrincipal(): JSX.Element {
         </div>
       ) : null}
 
-      <section className="grade-supervisoria">
-        <div className="area-sinotico">
-          <SinoticoPlanta estado={estado} />
-        </div>
+      <nav className="navegacao-abas" role="tablist">
+        <button
+          role="tab"
+          aria-selected={abaAtiva === 'supervisorio'}
+          className={`aba-botao ${abaAtiva === 'supervisorio' ? 'aba-botao--ativa' : ''}`}
+          onClick={() => setAbaAtiva('supervisorio')}
+        >
+          Supervisório
+        </button>
+        <button
+          role="tab"
+          aria-selected={abaAtiva === 'documentacao'}
+          className={`aba-botao ${abaAtiva === 'documentacao' ? 'aba-botao--ativa' : ''}`}
+          onClick={() => setAbaAtiva('documentacao')}
+        >
+          Documentação Técnica
+        </button>
+      </nav>
 
-        <div className="area-lateral">
-          <PainelAlarmes
-            alarmes={estado.alarmes}
-            processoLiberado={estado.processoLiberado}
-          />
-          <PainelAtuadores acoes={estado} />
-          <PainelCenarios
-            onAcionarCenario={(nome) => {
-              void acionarCenario(nome)
-            }}
-          />
-        </div>
+      {abaAtiva === 'supervisorio' && (
+        <section className="grade-supervisoria">
+          <div className="area-sinotico">
+            <SinoticoPlanta estado={estado} />
+          </div>
 
-        <section className="painel-variaveis" aria-labelledby="titulo-variaveis">
-          <h2 id="titulo-variaveis">Variáveis de processo</h2>
-          <div className="grade-variaveis">
-            {variaveisProcesso(estado).map((variavel) => (
-              <CartaoVariavel
-                descricao={obterMetadados(variavel.tag)?.nomeAbreviado}
-                estado={variavel.estado}
-                key={variavel.tag}
-                nome={variavel.nome}
-                tag={variavel.tag}
-                unidade={variavel.unidade}
-                valor={variavel.valor}
-              />
-            ))}
+          <div className="area-lateral">
+            <PainelAlarmes
+              alarmes={estado.alarmes}
+              processoLiberado={estado.processoLiberado}
+            />
+            <PainelAtuadores acoes={estado} />
+            <PainelCenarios
+              onAcionarCenario={(nome) => {
+                void acionarCenario(nome)
+              }}
+            />
+          </div>
+
+          <section className="painel-variaveis" aria-labelledby="titulo-variaveis">
+            <h2 id="titulo-variaveis">Variáveis de processo</h2>
+            <div className="grade-variaveis">
+              {variaveisProcesso(estado).map((variavel) => (
+                <CartaoVariavel
+                  descricao={obterMetadados(variavel.tag)?.nomeAbreviado}
+                  estado={variavel.estado}
+                  key={variavel.tag}
+                  nome={variavel.nome}
+                  tag={variavel.tag}
+                  unidade={variavel.unidade}
+                  valor={variavel.valor}
+                />
+              ))}
+            </div>
+          </section>
+
+          <div className="area-ajuste">
+            <PainelAjusteVariaveis
+              estadoAtual={estado}
+              onAlterarVariavel={(campo, valor) => {
+                void alterarVariavel(campo, valor)
+              }}
+            />
           </div>
         </section>
+      )}
 
-        <div className="area-ajuste">
-          <PainelAjusteVariaveis
-            estadoAtual={estado}
-            onAlterarVariavel={(campo, valor) => {
-              void alterarVariavel(campo, valor)
-            }}
-          />
+      {abaAtiva === 'documentacao' && (
+        <div className="documentacao-tecnica">
+          <p className="documentacao-intro">
+            Esta aba apresenta os documentos técnicos que fundamentam a lógica de controle da planta simulada.
+            A <strong>Matriz de Causa e Efeito</strong> é o espelho visual do algoritmo implementado em{' '}
+            <code>controle/regras_causa_efeito.py</code>. O <strong>P&amp;ID Conceitual</strong> representa
+            a disposição dos equipamentos e instrumentos seguindo a norma ISA 5.1 simplificada.
+          </p>
+          <PidConceitual />
+          <MatrizCausaEfeito />
         </div>
-      </section>
+      )}
     </main>
   )
 }
